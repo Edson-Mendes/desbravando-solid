@@ -2,7 +2,7 @@ package cotuba.application;
 
 import cotuba.domain.Ebook;
 
-public interface GeradorPDF {
+public interface GeradorEbook {
 
   void gera(Ebook ebook);
 
