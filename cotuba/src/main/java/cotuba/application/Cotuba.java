@@ -12,7 +12,7 @@ import java.util.List;
 public class Cotuba {
 
   public void executa(String formato, Path diretorioDosMD, Path arquivoDeSaida) {
-    var renderizador = new RenderizadorMDParaHTML();
+    RenderizadorMDParaHTML renderizador = RenderizadorMDParaHTML.cria();
     List<Capitulo> capitulos = renderizador.renderiza(diretorioDosMD);
 
     Ebook ebook = new Ebook();
@@ -21,10 +21,10 @@ public class Cotuba {
     ebook.setCapitulos(capitulos);
 
     if ("pdf".equals(formato)) {
-      var geradorPDF = new GeradorPDF();
+      GeradorPDF geradorPDF = GeradorPDF.cria();
       geradorPDF.gera(ebook);
     } else if ("epub".equals(formato)) {
-      var geradorEPUB = new GeradorEPUB();
+      GeradorEPUB geradorEPUB = GeradorEPUB.cria();
       geradorEPUB.gera(ebook);
     } else {
       throw new IllegalArgumentException("Formato do ebook inválido: " + formato);
