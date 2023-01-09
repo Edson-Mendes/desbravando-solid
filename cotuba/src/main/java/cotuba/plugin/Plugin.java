@@ -30,13 +30,13 @@ public interface Plugin {
                 String htmlModificado = plugin.aposRenderizacao(html);
                 capitulo.setConteudoHTML(htmlModificado);
             });
-      System.out.println("Aplicou a estilização!");
-      Thread.sleep(2000);
+      System.out.println("Aplicou estilizacao!");
     }
 
     static void gerou(Ebook ebook) {
       ServiceLoader.load(Plugin.class)
           .forEach(plugin -> plugin.aposGeracao(ebook));
+      System.out.println("Modificacao apos gerar ebook");
     }
 
 }
