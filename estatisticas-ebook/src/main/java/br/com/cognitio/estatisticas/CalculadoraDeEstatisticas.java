@@ -7,10 +7,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import java.text.Normalizer;
-import java.util.Comparator;
-import java.util.Locale;
 import java.util.Map;
-import java.util.TreeMap;
 
 public class CalculadoraDeEstatisticas implements Plugin {
 
@@ -21,7 +18,7 @@ public class CalculadoraDeEstatisticas implements Plugin {
 
   @Override
   public void aposGeracao(Ebook ebook) {
-    Map<String, Integer> contagemDePalavras = new TreeMap<>();
+    var contagemDePalavras = new ContagemDePalavras();
 
     for (Capitulo capitulo : ebook.getCapitulos()) {
       String html = capitulo.getConteudoHTML();
@@ -35,13 +32,11 @@ public class CalculadoraDeEstatisticas implements Plugin {
       String decomposta = Normalizer.normalize(textoDoCapituloSemPontuacao, Normalizer.Form.NFD);
       String textoDoCapituloSemAcentos = decomposta.replaceAll("[^\\p{ASCII}]", "");
 
-
-
       String[] palavras = textoDoCapituloSemAcentos.split("\\s+");
 
       for (String palavra : palavras) {
         String emMaiusculas = palavra.toUpperCase();
-        contagemDePalavras.put(emMaiusculas, 1);
+        contagemDePalavras.adicionaPalavra(emMaiusculas);
       }
 
       for (Map.Entry<String, Integer> contagem : contagemDePalavras.entrySet()) {
