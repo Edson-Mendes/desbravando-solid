@@ -1,8 +1,6 @@
 package cotuba.domain;
 
-import cotuba.plugin.CapituloSoParaLeitura;
-
-public final class Capitulo implements CapituloSoParaLeitura {
+public final class Capitulo {
 
   private final String titulo;
   private final String conteudoHTML;
@@ -12,12 +10,10 @@ public final class Capitulo implements CapituloSoParaLeitura {
     this.conteudoHTML = conteudoHTML;
   }
 
-  @Override
   public String getTitulo() {
     return titulo;
   }
 
-  @Override
   public String getConteudoHTML() {
     return conteudoHTML;
   }
