@@ -15,8 +15,8 @@ public class CalculadoraDeEstatisticas implements AoFinalizarGeracao {
   public void aposGeracao(Ebook ebook) {
     var contagemDePalavras = new ContagemDePalavras();
 
-    for (Capitulo capitulo : ebook.getCapitulos()) {
-      String html = capitulo.getConteudoHTML();
+    for (Capitulo capitulo : ebook.capitulos()) {
+      String html = capitulo.conteudoHTML();
 
       Document doc = Jsoup.parse(html);
 
@@ -34,15 +34,12 @@ public class CalculadoraDeEstatisticas implements AoFinalizarGeracao {
         contagemDePalavras.adicionaPalavra(emMaiusculas);
       }
 
-      for (Map.Entry<String, Integer> contagem : contagemDePalavras.entrySet()) {
-        String palavra = contagem.getKey();
-
-        Integer ocorrencias = contagem.getValue();
-
-        System.out.println(palavra + ": " + ocorrencias);
+      for (ContagemDePalavras.Contagem contagem : contagemDePalavras) {
+        System.out.println(contagem.palavra() + ": " + contagem.contagem());
       }
 
     }
+
     try {
       Thread.sleep(2000);
     } catch (Exception ex) {

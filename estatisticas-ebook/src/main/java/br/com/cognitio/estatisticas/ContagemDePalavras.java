@@ -1,17 +1,20 @@
 package br.com.cognitio.estatisticas;
 
+import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
 
-public class ContagemDePalavras {
+public class ContagemDePalavras implements Iterable<ContagemDePalavras.Contagem>{
+
+  record Contagem(String palavra, int contagem) {
+  }
 
   private Map<String, Integer> map = new TreeMap<>();
 
   void adicionaPalavra(String palavra) {
     Integer contagem = map.get(palavra);
 
-    if(contagem != null) {
+    if (contagem != null) {
       contagem++;
     } else {
       contagem = 1;
@@ -20,8 +23,24 @@ public class ContagemDePalavras {
     map.put(palavra, contagem);
   }
 
-  Set<Map.Entry<String, Integer>> entrySet() {
-    return map.entrySet();
+  @Override
+  public Iterator<Contagem> iterator() {
+    Iterator<Map.Entry<String, Integer>> iterator = this.map.entrySet().iterator();
+
+    return new Iterator<>() {
+      @Override
+      public boolean hasNext() {
+        return iterator.hasNext();
+      }
+
+      @Override
+      public Contagem next() {
+        Map.Entry<String, Integer> entry = iterator.next();
+        String palavra = entry.getKey();
+        int ocorrencias = entry.getValue();
+        return new Contagem(palavra, ocorrencias);
+      }
+    };
   }
 
 }

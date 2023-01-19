@@ -20,20 +20,20 @@ public class GeradorPDF implements GeradorEbook {
 
   @Override
   public void gera(Ebook ebook) {
-    Path arquivoDeSaida = ebook.getArquivoDeSaida();
+    Path arquivoDeSaida = ebook.arquivoDeSaida();
 
     try (var writer = new PdfWriter(Files.newOutputStream(arquivoDeSaida));
          var pdf = new PdfDocument(writer);
          var pdfDocument = new Document(pdf)) {
 
-      for (Capitulo capitulo : ebook.getCapitulos()) {
-        String html = capitulo.getConteudoHTML();
+      for (Capitulo capitulo : ebook.capitulos()) {
+        String html = capitulo.conteudoHTML();
         List<IElement> convertToElements = HtmlConverter.convertToElements(html);
         for (IElement element : convertToElements) {
           pdfDocument.add((IBlockElement) element);
         }
 
-        if (!ebook.isUltimoCapitulo(capitulo)) {
+        if (!ebook.ultimoCapitulo(capitulo)) {
           pdfDocument.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
         }
       }
