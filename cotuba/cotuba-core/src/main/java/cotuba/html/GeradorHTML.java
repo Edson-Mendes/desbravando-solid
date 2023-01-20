@@ -1,6 +1,7 @@
 package cotuba.html;
 
-import cotuba.application.GeradorEbook;
+import cotuba.domain.FormatoEbook;
+import cotuba.plugin.GeradorEbook;
 import cotuba.domain.Capitulo;
 import cotuba.domain.Ebook;
 
@@ -43,6 +44,11 @@ public class GeradorHTML implements GeradorEbook {
       throw new IllegalStateException("Erro ao criar HTML: "
           + arquivoDeSaida.toAbsolutePath(), ex);
     }
+  }
+
+  @Override
+  public FormatoEbook formato() {
+    return FormatoEbook.HTML;
   }
 
   private String obtemNomeDoArquivoHTMLDoCapitulo(int i, Capitulo capitulo) {
