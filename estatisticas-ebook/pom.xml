@@ -15,7 +15,7 @@
     <dependencies>
         <dependency>
             <groupId>cotuba</groupId>
-            <artifactId>cotuba-cli</artifactId>
+            <artifactId>cotuba-core</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
