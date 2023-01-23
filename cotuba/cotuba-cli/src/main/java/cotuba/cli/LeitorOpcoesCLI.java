@@ -1,6 +1,7 @@
 package cotuba.cli;
 
 import cotuba.application.ParametrosCotuba;
+import cotuba.application.RepositorioDeMDs;
 import cotuba.domain.FormatoEbook;
 import org.apache.commons.cli.*;
 
@@ -31,8 +32,8 @@ class LeitorOpcoesCLI implements ParametrosCotuba {
   }
 
   @Override
-  public Path getDiretorioDosMD() {
-    return diretorioDosMD;
+  public RepositorioDeMDs getRepositorioDeMDs() {
+    return new MDsDoDiretorio(diretorioDosMD);
   }
 
   @Override

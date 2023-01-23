@@ -30,6 +30,24 @@
     <dependencies>
 
         <dependency>
+            <groupId>cotuba</groupId>
+            <artifactId>cotuba-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>cotuba</groupId>
+            <artifactId>cotuba-pdf</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>cotuba</groupId>
+            <artifactId>cotuba-epub</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
